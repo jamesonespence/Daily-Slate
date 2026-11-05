@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Daily Slate v2_1</title>
+<title>Daily Slate v2_2</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@600;800&display=swap">
 <style>
@@ -87,13 +87,15 @@ h1{font-family:var(--f-disp);font-weight:800;text-transform:uppercase;letter-spa
 <div class="wrap">
 <header>
 <h1>Daily Slate</h1>
-<div class="verbar"><span>Daily Slate v2_1</span><span><button type="button" class="linkbtn" id="relbtn">Release notes</button></span></div>
+<div class="verbar"><span>Daily Slate v2_2</span><span><button type="button" class="linkbtn" id="relbtn">Release notes</button></span></div>
 <div class="stamp" id="upd"></div>
 <div class="stamp" id="feed" style="color:var(--mu)"></div>
 </header>
 <div id="stale" class="stale" hidden></div>
 <div id="notes" hidden>
 <h3>Release notes</h3>
+<h4>v2_2 - Nov 4, 2026</h4>
+<ul><li>Fixed TV: Prime Video games were mislabeled (NBA Prime shown as ABC, NBA TV shown as Prime). Tonight's Senators at Sabres now shows Prime Video (Canada).</li></ul>
 <h4>v2_1 - Nov 4, 2026</h4>
 <ul><li>Built-in schedule is refreshed by hand when needed; the live feed handles day-to-day changes.</li><li>Full-season schedules: NBA to Apr 11, NHL to Apr 10, NFL to Jan 10, MLS through the playoffs. MLB is shown as offseason.</li>
 <li>Toronto teams (Raptors, Maple Leafs, Toronto FC) always show first, plus a next-game panel.</li>
@@ -126,14 +128,14 @@ h1{font-family:var(--f-disp);font-weight:800;text-transform:uppercase;letter-spa
 <footer class="credit" aria-label="Credit"><div class="cr-rule"></div><div class="cr-mark">JS</div><div class="cr-by">Designed and built by</div><div class="cr-name">Jameson Spence</div><div class="cr-date">November 2026</div></footer>
 </div>
 <script>
-window.SLATE={"updated":"Wed Nov 4, 6:20 PM ET","updatedISO":"2026-11-04T18:20:00-05:00","from":"2026-11-04","to":"2027-04-11","tz":"-05:00","mlb":"Offseason: the Brewers beat the Rays for their first World Series title. Spring training games start Feb 19, 2027 (subject to CBA talks).","sources":["CBS Sports schedules","Sports Media Watch","DIRECTV Insider","ESPN","DraftKings Network","Covers","SI Betting","BetMGM","MLS","SportsRadar win-probability feed"]};
+window.SLATE={"updated":"Wed Nov 4, 7:55 PM ET","updatedISO":"2026-11-04T19:55:00-05:00","from":"2026-11-04","to":"2027-04-11","tz":"-05:00","mlb":"Offseason: the Brewers beat the Rays for their first World Series title. Spring training games start Feb 19, 2027 (subject to CBA talks).","sources":["CBS Sports schedules","Sports Media Watch","DIRECTV Insider","ESPN","DraftKings Network","Covers","SI Betting","BetMGM","MLS","SportsRadar win-probability feed"]};
 window.SLATE.games=[
 {"lg":"NBA","d":"2026-11-04","t":"19:00","a":"PHI","h":"DET","n":"E","o":{"s":"DET -2.5","m":"DET -135 / PHI +120","t":"O/U 219.5"}},
 {"lg":"NBA","d":"2026-11-04","t":"19:00","a":"ATL","h":"WAS","o":{"s":"ATL -2.5","m":"ATL -155 / WAS +131","t":"O/U 232.5"}},
 {"lg":"NBA","d":"2026-11-04","t":"19:30","a":"MIL","h":"BOS","o":{"s":"BOS -10.5","m":"BOS -567 / MIL +424","t":"n/a"}},
 {"lg":"NBA","d":"2026-11-04","t":"19:30","a":"CHA","h":"BKN","o":{"s":"CHA -3.5","m":"CHA -162 / BKN +136","t":"O/U 213.5"}},
 {"lg":"NBA","d":"2026-11-04","t":"19:30","a":"CHI","h":"NYK","o":{"s":"NYK -12.5","m":"NYK -597 / CHI +443","t":"O/U 233.5"}},
-{"lg":"NHL","d":"2026-11-04","t":"19:30","a":"OTT","h":"BUF","o":{"s":"BUF -1.5 (+180)","m":"BUF -130 to -148 / OTT +110","t":"O/U 6.5"}},
+{"lg":"NHL","d":"2026-11-04","t":"19:30","a":"OTT","h":"BUF","o":{"s":"BUF -1.5 (+180)","m":"BUF -130 to -148 / OTT +110","t":"O/U 6.5"},"tv":[["Prime Video (Canada)","str"],["ESPN+ (US, out of market)","str"],["MSG-B (Buffalo)","loc"]],"tvx":1},
 {"lg":"NHL","d":"2026-11-04","t":"19:30","a":"CHI","h":"FLA","n":"T","o":{"s":"FLA -1.5 (+110)","m":"FLA -245 / CHI +210","t":"O/U 6"}},
 {"lg":"NBA","d":"2026-11-04","t":"20:00","a":"UTA","h":"NOP","o":{"s":"NOP -5.5","m":"NOP -228 / UTA +189","t":"O/U 233.5"}},
 {"lg":"NBA","d":"2026-11-04","t":"20:00","a":"IND","h":"MEM","o":{"s":"MEM -5.5 to -6.5","m":"MEM -243 / IND +200","t":"O/U 229.5"}},
@@ -2501,8 +2503,8 @@ NFL:mk('ARI:Arizona Cardinals:State Farm Stadium;ATL:Atlanta Falcons:Mercedes-Be
 MLS:mk('CLB:Columbus Crew:ScottsMiracle-Gro Field;CHI:Chicago Fire:Soldier Field;NSH:Nashville SC:GEODIS Park;CIN:FC Cincinnati:TQL Stadium;NYC:New York City FC:Citi Field;DC:D.C. United:Audi Field;CLT:Charlotte FC:Bank of America Stadium;MIA:Inter Miami:Nu Stadium;VAN:Vancouver Whitecaps:BC Place;MTL:CF Montreal:Stade Saputo;ATL:Atlanta United:Mercedes-Benz Stadium;RBNY:New York Red Bulls:Sports Illustrated Stadium;NE:New England Revolution:Gillette Stadium;ORL:Orlando City:Inter&Co Stadium;TOR:Toronto FC:BMO Field;PHI:Philadelphia Union:Subaru Park;POR:Portland Timbers:Providence Park;ATX:Austin FC:Q2 Stadium;COL:Colorado Rapids:Dick\'s Sporting Goods Park;DAL:FC Dallas:Toyota Stadium;SJ:San Jose Earthquakes:PayPal Park;MIN:Minnesota United:Allianz Field;STL:St. Louis City SC:CITYPark;HOU:Houston Dynamo:Shell Energy Stadium;LAFC:Los Angeles FC:BMO Stadium;LA:LA Galaxy:Dignity Health Sports Park;SEA:Seattle Sounders:Lumen Field;SD:San Diego FC:Snapdragon Stadium;SKC:Sporting Kansas City:Children\'s Mercy Park;RSL:Real Salt Lake:America First Field')
 };
 var NAT={
-NBA:{E:['ESPN','nat'],A:['ABC','nat'],N:['NBC','nat'],C:['Peacock','str'],T:['Prime Video','str'],F:['Fubo','str']},
-NHL:{D:['ESPN+ / Disney+','str'],T:['TNT / truTV / Max','nat'],N:['NHL Network','nat'],A:['ABC','nat']},
+NBA:{E:['ESPN','nat'],A:['Prime Video','str'],N:['Peacock','str'],C:['NBC / Peacock','nat'],T:['NBA TV','nat'],F:['Fubo','str']},
+NHL:{D:['ESPN+ / Disney+','str'],T:['TNT / truTV / Max','nat'],N:['NHL Network','nat'],A:['Prime Video','str']},
 NFL:{A:['Prime Video','str'],N:['NBC / Peacock','nat'],E:['ESPN / ABC','nat'],B:['ESPN / ABC','nat'],C:['CBS / Paramount+','nat'],F:['FOX','nat'],D:['NFL Network','nat'],X:['Netflix','str']},
 MLS:{}
 };
@@ -2512,7 +2514,7 @@ function nm(lg,a){return (T[lg][a]||{n:a}).n;}
 function tvOf(g){
   var out=[],n=NAT[g.lg]||{};
   if(g.tv&&g.tv.length){var seenL={};g.tv.forEach(function(x){out.push(x);seenL[x[0]]=1;});
-    var ca0=CA[g.lg]||{};[g.a,g.h].forEach(function(t){if(ca0[t]&&!seenL[ca0[t]+' (Canada)']){out.push([ca0[t]+' (Canada)','loc']);seenL[ca0[t]+' (Canada)']=1;}});
+    var ca0=g.tvx?{}:(CA[g.lg]||{});[g.a,g.h].forEach(function(t){if(ca0[t]&&!seenL[ca0[t]+' (Canada)']){out.push([ca0[t]+' (Canada)','loc']);seenL[ca0[t]+' (Canada)']=1;}});
     return out;}
   if(g.n&&n[g.n])out.push(n[g.n]);
   if(g.lg==='MLS')out.push(['Apple TV (MLS Season Pass)','str']);
@@ -2747,7 +2749,7 @@ function mergeEvents(lg,ev){
       if(c.venue&&c.venue.fullName&&c.venue.fullName!==T[lg][hh].v)g.v=c.venue.fullName;
       var tv=[];(c.broadcasts||[]).forEach(function(b){(b.names||[]).forEach(function(nme){
         var kind=b.market==='national'?(STREAM.test(nme)?'str':'nat'):'loc';tv.push([nme+(kind==='loc'?' (local)':''),kind]);});});
-      if(tv.length){g.tv=tv;}
+      if(tv.length){if(g.tvx){var have={};g.tv.forEach(function(x){have[x[0].toLowerCase()]=1;});tv.forEach(function(x){if(!have[x[0].toLowerCase()])g.tv.push(x);});}else g.tv=tv;}
       var od=c.odds&&c.odds[0];
       if(od&&(od.details||od.overUnder)){
         var o={s:od.details||null,t:od.overUnder?('O/U '+od.overUnder):null,src:(od.provider&&od.provider.name)||'ESPN'};
