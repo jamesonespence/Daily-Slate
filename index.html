@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Daily Slate v2_5</title>
+<title>Daily Slate v2_6</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@600;800&display=swap">
 <style>
@@ -89,13 +89,15 @@ h1{font-family:var(--f-disp);font-weight:800;text-transform:uppercase;letter-spa
 <div class="wrap">
 <header>
 <h1>Daily Slate</h1>
-<div class="verbar"><span>Daily Slate v2_5</span><span><button type="button" class="linkbtn" id="relbtn">Release notes</button></span></div>
+<div class="verbar"><span>Daily Slate v2_6</span><span><button type="button" class="linkbtn" id="relbtn">Release notes</button></span></div>
 <div class="stamp" id="upd"></div>
 <div class="stamp" id="feed" style="color:var(--mu)"></div>
 </header>
 <div id="stale" class="stale" hidden></div>
 <div id="notes" hidden>
 <h3>Release notes</h3>
+<h4>v2_6 - Nov 5, 2026</h4>
+<ul><li>Fixed the full view thinking it was still Nov 4: today, Tonight, Tomorrow, Next 7/14/30 days and the date strip now use the real date. Games from earlier days are hidden.</li></ul>
 <h4>v2_5 - Nov 5, 2026</h4>
 <ul><li>Gamescore link is now a full-width blue button on Maple Leafs cards.</li></ul>
 <h4>v2_4 - Nov 5, 2026</h4>
@@ -139,7 +141,7 @@ h1{font-family:var(--f-disp);font-weight:800;text-transform:uppercase;letter-spa
 <footer class="credit" aria-label="Credit"><div class="cr-rule"></div><div class="cr-mark">JS</div><div class="cr-by">Designed and built by</div><div class="cr-name">Jameson Spence</div><div class="cr-date">November 2026</div></footer>
 </div>
 <script>
-window.SLATE={"updated":"Thu Nov 5, 9:12 AM ET","updatedISO":"2026-11-05T09:12:00-05:00","from":"2026-11-04","to":"2027-04-11","tz":"-05:00","mlb":"Offseason: the Brewers beat the Rays for their first World Series title. Spring training games start Feb 19, 2027 (subject to CBA talks).","sources":["CBS Sports schedules","Sports Media Watch","DIRECTV Insider","ESPN","DraftKings Network","Covers","SI Betting","BetMGM","MLS","SportsRadar win-probability feed"]};
+window.SLATE={"updated":"Thu Nov 5, 7:55 PM ET","updatedISO":"2026-11-05T19:55:00-05:00","from":"2026-11-04","to":"2027-04-11","tz":"-05:00","mlb":"Offseason: the Brewers beat the Rays for their first World Series title. Spring training games start Feb 19, 2027 (subject to CBA talks).","sources":["CBS Sports schedules","Sports Media Watch","DIRECTV Insider","ESPN","DraftKings Network","Covers","SI Betting","BetMGM","MLS","SportsRadar win-probability feed"]};
 window.SLATE.games=[
 {"lg":"NBA","d":"2026-11-04","t":"19:00","a":"PHI","h":"DET","n":"E","o":{"s":"DET -2.5","m":"DET -135 / PHI +120","t":"O/U 219.5"}},
 {"lg":"NBA","d":"2026-11-04","t":"19:00","a":"ATL","h":"WAS","o":{"s":"ATL -2.5","m":"ATL -155 / WAS +131","t":"O/U 232.5"}},
@@ -2548,11 +2550,14 @@ function saveFav(){try{localStorage.setItem('slate_fav',JSON.stringify(FAV));}ca
 function isFav(g){return !!g.a&&(FAV[g.lg+':'+g.a]||FAV[g.lg+':'+g.h]);}
 
 // dates
-var DATES=[];(function(){var c=parts(S.from),e=parts(S.to);while(c<=e){DATES.push(c.getFullYear()+'-'+('0'+(c.getMonth()+1)).slice(-2)+'-'+('0'+c.getDate()).slice(-2));c.setDate(c.getDate()+1);}})();
+var ALLD=[];var DATES=[];var TODAY='';(function(){var c=parts(S.from),e=parts(S.to);while(c<=e){ALLD.push(c.getFullYear()+'-'+('0'+(c.getMonth()+1)).slice(-2)+'-'+('0'+c.getDate()).slice(-2));c.setDate(c.getDate()+1);}})();
+DATES=ALLD.slice();
+function refreshDates(){TODAY=todayStr();DATES=ALLD.filter(function(d){return d>=TODAY;});}
 
 var ST={lg:'ALL',date:'',range:'',team:'',net:'',q:'',nat:false,fav:false,tor:false,lim:14};
 function netsOf(g){return tvOf(g).map(function(x){return x[0];});}
 function match(g){
+  if(TODAY&&g.d<TODAY)return false;
   if(ST.lg!=='ALL'&&g.lg!==ST.lg)return false;
   if(ST.date&&g.d!==ST.date)return false;
   if(ST.range){var i=DATES.indexOf(g.d);if(i<0||i>=+ST.range)return false;}
@@ -2675,7 +2680,7 @@ function renderHome(now){
 }
 
 function render(fromLive){
-  var now=new Date();
+  var now=new Date();refreshDates();
   var home=VIEW==='home';
   $('home').hidden=!home;$('full').hidden=home;
   $('vtitle').textContent=home?'Toronto today':'All games';
@@ -2843,7 +2848,7 @@ $('team').onchange=function(){ST.team=this.value;render();};
 $('net').onchange=function(){ST.net=this.value;render();};
 $('q').oninput=function(){ST.q=this.value.trim();render();};
 $('rst').onclick=reset;
-$('upd').textContent='';var ub=el('b',null,'Data last updated: '+S.updated);$('upd').appendChild(ub);$('upd').appendChild(document.createTextNode('  |  schedules '+S.from+' to '+S.to+'  |  all times Eastern  |  auto-updates daily around 5:45 AM ET'));
+$('upd').textContent='';var ub=el('b',null,'Data last updated: '+S.updated);$('upd').appendChild(ub);$('upd').appendChild(document.createTextNode('  |  schedules '+S.from+' to '+S.to+'  |  all times Eastern  |  live feed refreshes every 5 minutes'));
 $('relbtn').onclick=function(){var n=$('notes');n.hidden=!n.hidden;};
 (function(){var age=(Date.now()-new Date(S.updatedISO).getTime())/3600e3;setTimeout(function(){if(age>36&&!LIVE.ok){var s=$('stale');s.hidden=false;s.textContent='This data was last updated '+S.updated+' ('+Math.floor(age/24)+' day(s) ago). The automatic update may have stopped, so lines, times and TV may be out of date.';}},6000);})();
 $('foot').textContent='Sources: '+S.sources.join(', ')+'. The next 7 days are deep-searched (lines, TV, venues). Later games show the schedule, time and venue; national TV is only listed where confirmed and local channels are team defaults. Odds post about a day before each game. Always confirm on the league or network site before you tune in.';
